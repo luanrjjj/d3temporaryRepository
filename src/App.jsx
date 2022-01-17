@@ -213,7 +213,8 @@ console.log('aSUDHASUDHUASHUASDHUASHUAS',dimensions.width - dimensions.margin.le
 
         //Axes
 
-  let xAxis = svg.append("g")
+  let xAxis = svgContent.select('.x-axis')
+      .join("g")
         .attr("transform", "translate(0," + (dimensions.height-60) +")")
         .call(
           d3.axisBottom(xScale)
@@ -232,7 +233,8 @@ console.log('aSUDHASUDHUASHUASDHUASHUAS',dimensions.width - dimensions.margin.le
       .domain(allYTicks)
       .padding(0.01);
 
-      let yAxis = svg.append("g")
+      let yAxis = svgContent.select('.y-axis')
+      .join("g")
       .call(d3.axisLeft(y))
       .attr("transform", "translate(30,0)")//magic number, change it at will
 
@@ -242,8 +244,9 @@ console.log('aSUDHASUDHUASHUASDHUASHUAS',dimensions.width - dimensions.margin.le
           return d;
       });
 
-      let xAxisGrid = svg.append('g')
-      .attr('class', 'x-axis-grid')
+      let xAxisGrid = svgContent.select('.x-axis-grid')
+      .join('g')
+      //.attr('class', 'x-axis-grid')
       .attr('transform', 'translate(0,' + dimensions.height + ')')
       .call(
           d3.axisBottom(xScale)
@@ -518,12 +521,18 @@ useEffect(()=> {
   fetchDataSumulas()
 },[])
 
-//const id = 'ZoomableBarChart'
+const id = 'ZoomableBarChart'
 console.log(dataTimeView)
 console.log(dataSumulas)
 
 /*
-   <defs>
+
+      */
+
+  return (
+    <div ref={wrapperRef} style={{ marginBottom: "2rem",marginTop:'300px',padding:'20px' }}>
+    <svg ref={svgRef} width = "1100" height= "1100">
+    <defs>
           <clipPath id={id}>
             <rect x="0" y="0" width="100%" height="100%" />
           </clipPath>
@@ -532,14 +541,9 @@ console.log(dataSumulas)
         <g className="content" clipPath={`url(#${id})`}>
        <g className="x-axis" />
       <g className="y-axis" />
+      <g id = {'grid'}className="x-axis-grid"/>
 
       </g>
-      */
-
-  return (
-    <div ref={wrapperRef} style={{ marginBottom: "2rem",marginTop:'300px',padding:'20px' }}>
-    <svg ref={svgRef} width = "1100" height= "1100">
-    
     
     </svg>
   </div>
