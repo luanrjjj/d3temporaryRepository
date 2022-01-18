@@ -70,8 +70,18 @@ text {
 
 /* LEGAL VIS STYLES */
 
+svg {
+    outline:none;
+    border:none;
+}
 
-
+.content {
+    max-width:300px;
+    max-height:500px;
+    overflow:hidden;
+    outline:none;
+    border:none;
+}
 
 .time-view-rect {
     /*stroke: black; 
@@ -121,3 +131,7 @@ text {
    fill: #b52727;
 }
 
+.flot-chart-content {
+    outline:none;
+    width:100%;
+}
